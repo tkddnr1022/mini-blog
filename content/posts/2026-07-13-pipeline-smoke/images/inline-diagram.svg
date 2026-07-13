@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="240" viewBox="0 0 480 240" role="img" aria-label="Inline pipeline diagram">
+  <rect width="480" height="240" fill="#fafafa"/>
+  <rect x="40" y="80" width="120" height="80" rx="8" fill="#e4e4e7"/>
+  <rect x="180" y="80" width="120" height="80" rx="8" fill="#d4d4d8"/>
+  <rect x="320" y="80" width="120" height="80" rx="8" fill="#a1a1aa"/>
+  <text x="100" y="128" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" fill="#27272a">Markdown</text>
+  <text x="240" y="128" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" fill="#27272a">Remark</text>
+  <text x="380" y="128" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" fill="#fafafa">HTML</text>
+</svg>

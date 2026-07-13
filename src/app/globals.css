@@ -128,3 +128,62 @@
     @apply font-sans;
   }
 }
+
+.post-content :is(h2, h3, h4) {
+  scroll-margin-top: 5rem;
+}
+
+.post-content table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.post-content :is(th, td) {
+  border: 1px solid var(--border);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+
+.post-content img {
+  max-width: 100%;
+  height: auto;
+}
+
+.broken-wikilink {
+  color: var(--muted-foreground);
+  text-decoration: line-through;
+}
+
+.callout {
+  margin: 1.25rem 0;
+  padding: 1rem 1.25rem;
+  border-left: 4px solid var(--border);
+  background: var(--muted);
+}
+
+.callout-title {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.callout-content > :first-child {
+  margin-top: 0;
+}
+
+.callout-content > :last-child {
+  margin-bottom: 0;
+}
+
+.callout-note {
+  border-left-color: oklch(0.556 0 0);
+}
+
+.callout-warning {
+  border-left-color: oklch(0.45 0 0);
+}
+
+.callout-tip,
+.callout-important,
+.callout-caution {
+  border-left-color: oklch(0.371 0 0);
+}

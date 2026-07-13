@@ -67,51 +67,51 @@
 예상: 3~4일 | 의존: M1
 
 ### T-M2-01. Frontmatter 파싱 및 Post 타입 정의
-- [ ] `gray-matter`로 frontmatter 파싱
-- [ ] Post 타입: `title`, `date`, `category`(필수), `tags`, `description`, `thumbnail`(선택), `slug`, `readingTime`(계산값)
-- [ ] `tags`는 데이터 보관만 — UI 태그 필터/페이지는 만들지 않음 (OQ-3)
-- [ ] `content/posts/{slug}/index.md` 규약 문서화
+- [x] `gray-matter`로 frontmatter 파싱
+- [x] Post 타입: `title`, `date`, `category`(필수), `tags`, `description`, `thumbnail`(선택), `slug`, `readingTime`(계산값)
+- [x] `tags`는 데이터 보관만 — UI 태그 필터/페이지는 만들지 않음 (OQ-3)
+- [x] `content/posts/{slug}/index.md` 규약 문서화
 - **관련:** FR-04, FR-06, PRD §7
 - **완료 기준:** 샘플 포스트 1편의 frontmatter가 타입 안전하게 파싱된다
 
 ### T-M2-02. 포스트 로더 (`lib/posts.ts`)
-- [ ] 전체 포스트 목록 조회 (date 내림차순)
-- [ ] slug로 단건 조회
-- [ ] 카테고리별 그룹핑 헬퍼
-- [ ] `reading-time`으로 읽는 시간 계산 후 메타에 포함
+- [x] 전체 포스트 목록 조회 (date 내림차순)
+- [x] slug로 단건 조회
+- [x] 카테고리별 그룹핑 헬퍼
+- [x] `reading-time`으로 읽는 시간 계산 후 메타에 포함
 - **관련:** FR-04, FR-06, FR-09
 - **완료 기준:** 로컬에서 포스트 목록/단건/카테고리 헬퍼가 올바른 데이터를 반환한다
 
 ### T-M2-03. remark/rehype 플러그인 체인
-- [ ] 기본 MD → HTML 파이프라인 구성 (`mdx-plugins.ts` 또는 동등 모듈)
-- [ ] GFM(테이블, 체크리스트 등) 지원
+- [x] 기본 MD → HTML 파이프라인 구성 (`mdx-plugins.ts` 또는 동등 모듈)
+- [x] GFM(테이블, 체크리스트 등) 지원
 - **관련:** FR-02
 - **완료 기준:** 표준 마크다운이 HTML로 렌더된다
 
 ### T-M2-04. Obsidian 호환 — 위키링크
-- [ ] `[[slug]]`, `[[slug|표시명]]` → 내부 포스트 링크로 변환
-- [ ] 존재하지 않는 slug는 깨진 링크 스타일 또는 plain text 처리 정책 적용
+- [x] `[[slug]]`, `[[slug|표시명]]` → 내부 포스트 링크로 변환
+- [x] 존재하지 않는 slug는 깨진 링크 스타일 또는 plain text 처리 정책 적용
 - **관련:** FR-02
 - **완료 기준:** 샘플 포스트의 위키링크가 올바른 `<a>`로 렌더된다
 
 ### T-M2-05. Obsidian 호환 — 콜아웃
-- [ ] `> [!note]`, `> [!warning]` 등 콜아웃을 스타일된 HTML 블록으로 변환
+- [x] `> [!note]`, `> [!warning]` 등 콜아웃을 스타일된 HTML 블록으로 변환
 - **관련:** FR-02
 - **완료 기준:** note/warning 콜아웃이 시각적으로 구분되어 표시된다
 
 ### T-M2-06. Mermaid 빌드타임 SVG 렌더링
-- [ ] `remark-mermaidjs`(또는 동등)로 mermaid 코드블록 → SVG
-- [ ] CI/로컬에서 Puppeteer 의존성 설치 확인
+- [x] `remark-mermaidjs`(또는 동등)로 mermaid 코드블록 → SVG
+- [x] CI/로컬에서 Puppeteer 의존성 설치 확인
 - **관련:** FR-03, OR-03
 - **완료 기준:** mermaid 포함 샘플 포스트 빌드 결과물에 SVG가 포함된다
 
 ### T-M2-07. 로컬 이미지 경로 처리
-- [ ] 포스트 폴더 내 `images/` 상대 경로가 정적 export 후에도 깨지지 않도록 처리
+- [x] 포스트 폴더 내 `images/` 상대 경로가 정적 export 후에도 깨지지 않도록 처리
 - **관련:** FR-08
 - **완료 기준:** 샘플 썸네일/본문 이미지가 빌드 산출물에서 정상 로드된다
 
 ### T-M2-08. 파이프라인 검증용 샘플 포스트
-- [ ] frontmatter·위키링크·콜아웃·mermaid·이미지·헤딩 구조를 모두 포함한 샘플 1편 추가
+- [x] frontmatter·위키링크·콜아웃·mermaid·이미지·헤딩 구조를 모두 포함한 샘플 1편 추가
 - **관련:** FR-02, FR-03, FR-08
 - **완료 기준:** 샘플만으로 M2 DoD를 수동 검증할 수 있다
 
