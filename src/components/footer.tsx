@@ -10,7 +10,7 @@ export function Footer() {
         <p>
           © {year} {name}
         </p>
-        <p>정적 블로그</p>
+        <p>생각 창고</p>
       </div>
     </footer>
   );

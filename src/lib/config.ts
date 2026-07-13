@@ -18,8 +18,8 @@ export type SiteConfig = {
 };
 
 const site = {
-  name: "sanguk",
-  description: "생각 창고",
+  name: "생각 창고",
+  description: "고민하고 배운 것들의 기록",
   url: "https://blog.sanguk.site",
   author: "tkddnr1022",
   github: "https://github.com/tkddnr1022",
