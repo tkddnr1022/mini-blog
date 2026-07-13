@@ -204,25 +204,25 @@
 
 ### T-M4-01. 검색 인덱스 빌드 스크립트
 
-- [ ] `scripts/build-search-index.ts` 작성
-- [ ] MiniSearch(또는 Lunr)용 JSON을 `public/search-index.json`에 출력
-- [ ] 필드: `title`, `description`, `content`(본문 전체), `category`, `slug` (OQ-2)
-- [ ] `package.json`에 `prebuild` 또는 CI 스텝으로 연결
+- [x] `scripts/build-search-index.ts` 작성
+- [x] MiniSearch(또는 Lunr)용 JSON을 `public/search-index.json`에 출력
+- [x] 필드: `title`, `description`, `content`(본문 전체), `category`, `slug` (OQ-2)
+- [x] `package.json`에 `prebuild` 또는 CI 스텝으로 연결
 - **관련:** FR-05, OR-03
 - **완료 기준:** 빌드 전/중 인덱스가 생성되고 제목·요약·본문으로 검색 가능한 데이터가 포함된다
 
 ### T-M4-02. 검색 페이지 UI
 
-- [ ] `/search` 페이지: 입력창 + 결과 목록
-- [ ] 클라이언트에서 인덱스 fetch → MiniSearch 쿼리
-- [ ] 입력 후 체감 100ms 이내 결과 갱신(로컬 인덱스 기준)
-- [ ] 결과 클릭 시 포스트 이동, 결과 없음 상태
+- [x] `/search` 페이지: 입력창 + 결과 목록
+- [x] 클라이언트에서 인덱스 fetch → MiniSearch 쿼리
+- [x] 입력 후 체감 100ms 이내 결과 갱신(로컬 인덱스 기준)
+- [x] 결과 클릭 시 포스트 이동, 결과 없음 상태
 - **관련:** FR-05, PRD §9.3
 - **완료 기준:** 키워드 입력 시 관련 포스트가 노출된다
 
 ### T-M4-03. Navbar 검색 진입점
 
-- [ ] 상단바 검색 아이콘/링크로 `/search` 이동 (또는 인라인 검색 — v1은 페이지 이동으로 충분)
+- [x] 상단바 검색 아이콘/링크로 `/search` 이동 (또는 인라인 검색 — v1은 페이지 이동으로 충분)
 - **관련:** FR-05, DR-06
 - **완료 기준:** Navbar에서 검색 페이지로 진입 가능하다
 

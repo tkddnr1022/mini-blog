@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "tsx scripts/copy-post-images.ts",
+    "predev": "tsx scripts/build-search-index.ts",
+    "build:search-index": "tsx scripts/build-search-index.ts",
+    "prebuild": "tsx scripts/copy-post-images.ts && tsx scripts/build-search-index.ts",
     "prebuild:mermaid": "playwright install chromium",
     "build": "next build",
     "start": "next start",
@@ -17,6 +19,7 @@
     "gray-matter": "^4.0.3",
     "lucide-react": "^1.24.0",
     "mdast-util-to-string": "^4.0.0",
+    "minisearch": "^7.2.0",
     "next": "16.2.10",
     "playwright": "^1.61.1",
     "radix-ui": "^1.6.2",
