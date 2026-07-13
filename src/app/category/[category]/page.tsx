@@ -1,5 +1,8 @@
+import type { Metadata } from "next";
+
 import { PostCard } from "@/components/post-card";
-import { decodeCategoryParam } from "@/lib/category";
+import { decodeCategoryParam, getCategoryPath } from "@/lib/category";
+import { absoluteUrl } from "@/lib/seo";
 import { getAllCategories, getPostsByCategory } from "@/lib/posts";
 
 type CategoryPageProps = {
@@ -12,6 +15,27 @@ export async function generateStaticParams() {
   return categories.map((category) => ({
     category: encodeURIComponent(category),
   }));
+}
+
+export async function generateMetadata({
+  params,
+}: CategoryPageProps): Promise<Metadata> {
+  const { category: categoryParam } = await params;
+  const category = decodeCategoryParam(categoryParam);
+  const canonical = getCategoryPath(category);
+
+  return {
+    title: category,
+    description: `${category} 카테고리 포스트 목록`,
+    alternates: {
+      canonical,
+    },
+    openGraph: {
+      title: category,
+      description: `${category} 카테고리 포스트 목록`,
+      url: absoluteUrl(canonical),
+    },
+  };
 }
 
 export default async function CategoryPage({ params }: CategoryPageProps) {

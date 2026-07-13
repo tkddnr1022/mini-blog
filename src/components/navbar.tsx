@@ -7,7 +7,7 @@ import { siteConfig } from "@/lib/config";
 import { getAllCategories } from "@/lib/posts";
 
 export async function Navbar() {
-  const { name } = siteConfig();
+  const { name, github, email } = siteConfig();
   const categories = await getAllCategories();
   const categoryHref =
     categories.length > 0 ? getCategoryPath(categories[0]) : "/";
@@ -57,12 +57,18 @@ export async function Navbar() {
             </Link>
           </Button>
           <Button variant="ghost" size="icon-sm" asChild>
-            <a href="#" aria-label="GitHub" title="GitHub (M5에서 연결)">
+            <a
+              href={github}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              title="GitHub"
+            >
               <ExternalLink />
             </a>
           </Button>
           <Button variant="ghost" size="icon-sm" asChild>
-            <a href="#" aria-label="이메일" title="이메일 (M5에서 연결)">
+            <a href={`mailto:${email}`} aria-label="이메일" title="이메일">
               <Mail />
             </a>
           </Button>

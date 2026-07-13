@@ -9,10 +9,11 @@
     "prebuild": "tsx scripts/copy-post-images.ts && tsx scripts/build-search-index.ts",
     "prebuild:mermaid": "playwright install chromium",
     "build": "next build",
-    "start": "next start",
+    "start": "npx serve@latest out",
     "lint": "eslint"
   },
   "dependencies": {
+    "@giscus/react": "^3.1.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "github-slugger": "^2.0.0",

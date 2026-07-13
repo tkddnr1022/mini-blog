@@ -51,4 +51,33 @@ content/posts/{slug}/
 
 ## 환경 변수
 
-`.env.example`을 참고해 `.env.local`을 생성하세요. (giscus, GA4 등은 후속 마일스톤에서 사용)
+`.env.example`을 복사해 `.env.local`을 만든 뒤 값을 채웁니다.
+
+```bash
+cp .env.example .env.local
+```
+
+| 변수 | 용도 |
+|------|------|
+| `NEXT_PUBLIC_SITE_URL` | SEO canonical·OG·sitemap 절대 URL (배포 도메인) |
+| `NEXT_PUBLIC_AUTHOR` | About·JSON-LD 작성자 이름 |
+| `NEXT_PUBLIC_GITHUB_URL` | Navbar·About GitHub 링크 |
+| `NEXT_PUBLIC_EMAIL` | Navbar·About 이메일 (`mailto:`) |
+| `NEXT_PUBLIC_GISCUS_*` | 포스트 댓글 (giscus) |
+| `NEXT_PUBLIC_GA_ID` | Google Analytics 4 측정 ID |
+
+### giscus 설정 (댓글)
+
+1. GitHub 저장소 **Settings → General → Features**에서 **Discussions** 활성화
+2. [giscus.app](https://giscus.app)에서 저장소 연결 후 `repo`, `repoId`, `category`, `categoryId` 복사
+3. `.env.local`(로컬) 또는 GitHub Actions **Secrets**에 `NEXT_PUBLIC_GISCUS_*` 주입
+4. 배포 후 포스트 하단에서 댓글 위젯 로드·작성 확인
+
+### GA4 설정 (애널리틱스)
+
+1. [Google Analytics](https://analytics.google.com/)에서 GA4 속성 생성
+2. **관리 → 데이터 스트림**에서 측정 ID(`G-XXXXXXXXXX`) 복사
+3. `.env.local` 또는 Actions Secrets에 `NEXT_PUBLIC_GA_ID` 설정
+4. 배포 후 GA4 **실시간** 보고서에서 방문 이벤트 확인
+
+미설정 시 giscus·GA4는 렌더되지 않으며 빌드는 정상 동작합니다.

@@ -1,6 +1,8 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { GiscusComments } from "@/components/giscus";
 import { PostContent } from "@/components/post-content";
 import { PostNavigation } from "@/components/post-navigation";
 import { Toc } from "@/components/toc";
@@ -10,6 +12,7 @@ import {
   getPostBySlug,
   getPostSlugs,
 } from "@/lib/posts";
+import { createBlogPostingJsonLd, createPostMetadata } from "@/lib/seo";
 
 type PostPageProps = {
   params: Promise<{ slug: string }>;
@@ -17,6 +20,20 @@ type PostPageProps = {
 
 export function generateStaticParams() {
   return getPostSlugs().map((slug) => ({ slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: PostPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const slugs = getPostSlugs();
+
+  if (!slugs.includes(slug)) {
+    return {};
+  }
+
+  const post = await getPostBySlug(slug);
+  return createPostMetadata(post);
 }
 
 export default async function PostPage({ params }: PostPageProps) {
@@ -30,9 +47,14 @@ export default async function PostPage({ params }: PostPageProps) {
   const post = await getPostBySlug(slug);
   const adjacent = await getAdjacentPosts(slug);
   const hasHeadings = post.headings.length > 0;
+  const jsonLd = createBlogPostingJsonLd(post);
 
   return (
     <div className="mx-auto w-full max-w-5xl flex-1 px-6 py-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div
         className={
           hasHeadings
@@ -76,6 +98,7 @@ export default async function PostPage({ params }: PostPageProps) {
 
           <PostContent html={post.html} />
           <PostNavigation adjacent={adjacent} />
+          <GiscusComments />
         </div>
 
         {hasHeadings ? (

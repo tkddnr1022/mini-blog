@@ -1,6 +1,24 @@
+import type { Metadata } from "next";
+
 import { PostCard } from "@/components/post-card";
 import { siteConfig } from "@/lib/config";
+import { absoluteUrl } from "@/lib/seo";
 import { getAllPosts } from "@/lib/posts";
+
+export function generateMetadata(): Metadata {
+  const { name, description } = siteConfig();
+
+  return {
+    alternates: {
+      canonical: "/",
+    },
+    openGraph: {
+      title: name,
+      description,
+      url: absoluteUrl("/"),
+    },
+  };
+}
 
 export default async function Home() {
   const { name, description } = siteConfig();

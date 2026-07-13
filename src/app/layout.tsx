@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
+import { Analytics } from "@/components/analytics";
 import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar";
+import { createDefaultMetadata } from "@/lib/seo";
 
 import "./globals.css";
 
@@ -16,10 +18,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Mini Blog",
-  description: "Personal technical blog",
-};
+export const metadata: Metadata = createDefaultMetadata();
 
 export default function RootLayout({
   children,
@@ -32,6 +31,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
+        <Analytics />
         <Navbar />
         <main className="flex flex-1 flex-col">{children}</main>
         <Footer />

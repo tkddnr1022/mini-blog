@@ -234,52 +234,52 @@
 
 ### T-M5-01. About 페이지
 
-- [ ] `/about` — 소개, 약력, 연락처
-- [ ] 콘텐츠는 마크다운 또는 정적 TSX 중 하나 선택해 구현
+- [x] `/about` — 소개, 약력, 연락처
+- [x] 콘텐츠는 마크다운 또는 정적 TSX 중 하나 선택해 구현
 - **관련:** FR-11
 - **완료 기준:** About 페이지가 접근·렌더된다
 
 ### T-M5-02. 외부 링크 노출
 
-- [ ] Navbar 및/또는 About에 GitHub 프로필, 이메일 `mailto:` 링크
-- [ ] 설정값(URL/이메일)을 상수 또는 환경변수로 분리
+- [x] Navbar 및/또는 About에 GitHub 프로필, 이메일 `mailto:` 링크
+- [x] 설정값(URL/이메일)을 상수 또는 환경변수로 분리
 - **관련:** FR-12
 - **완료 기준:** GitHub/이메일 링크가 클릭 가능하다
 
 ### T-M5-03. giscus 댓글
 
-- [ ] GitHub Discussions + giscus 앱 설정 (저장소 측 수동 설정 체크리스트 포함)
-- [ ] `components/giscus.tsx`를 포스트 상세 하단에 삽입
-- [ ] 테마가 라이트/다크 모드와 동기화되도록 준비(다크모드는 M6과 연동)
+- [x] GitHub Discussions + giscus 앱 설정 (저장소 측 수동 설정 체크리스트 포함)
+- [x] `components/giscus.tsx`를 포스트 상세 하단에 삽입
+- [x] 테마가 라이트/다크 모드와 동기화되도록 준비(다크모드는 M6과 연동)
 - **관련:** FR-10
 - **완료 기준:** 배포(또는 로컬 preview)에서 댓글 위젯이 로드되고 작성 가능하다
 
 ### T-M5-04. SEO — 페이지 메타데이터
 
-- [ ] `generateMetadata`: title, description, canonical
-- [ ] OG/Twitter 카드 태그 (포스트별 thumbnail 우선)
+- [x] `generateMetadata`: title, description, canonical
+- [x] OG/Twitter 카드 태그 (포스트별 thumbnail 우선)
 - **관련:** FR-13
 - **완료 기준:** 포스트별 `<meta>` / OG 태그가 HTML에 존재한다
 
 ### T-M5-05. SEO — sitemap · robots · JSON-LD
 
-- [ ] `sitemap.xml` 생성 (정적 export 호환 방식)
-- [ ] `robots.txt` 추가
-- [ ] 포스트 상세에 JSON-LD `BlogPosting` 삽입
+- [x] `sitemap.xml` 생성 (정적 export 호환 방식)
+- [x] `robots.txt` 추가
+- [x] 포스트 상세에 JSON-LD `BlogPosting` 삽입
 - **관련:** FR-13
 - **완료 기준:** sitemap/robots가 산출물에 포함되고, JSON-LD가 유효하다
 
 ### T-M5-06. OG 이미지 전략
 
-- [ ] thumbnail 있으면 사용, 없으면 기본 OG 이미지(`public/og/`) fallback
+- [x] thumbnail 있으면 사용, 없으면 기본 OG 이미지(`public/og/`) fallback
 - **관련:** FR-13
 - **완료 기준:** OG 이미지 URL이 깨지지 않는다 (커스텀 도메인 절대 URL 기준)
 
 ### T-M5-07. GA4 애널리틱스
 
-- [ ] GA4 측정 ID를 환경변수(또는 설정 상수)로 분리
-- [ ] 공통 레이아웃에 GA4 스크립트 삽입 (정적 export 호환)
-- [ ] `.env.example` / README에 측정 ID 설정 방법 안내
+- [x] GA4 측정 ID를 환경변수(또는 설정 상수)로 분리
+- [x] 공통 레이아웃에 GA4 스크립트 삽입 (정적 export 호환)
+- [x] `.env.example` / README에 측정 ID 설정 방법 안내
 - **관련:** FR-14, OQ-4
 - **완료 기준:** 배포 환경에서 GA4 실시간/이벤트 수집이 확인된다
 
