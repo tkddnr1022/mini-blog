@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useDeferredValue, useEffect, useRef, useState } from "react";
 
 import { Input } from "@/components/ui/input";
-import { getCategoryPath } from "@/lib/category";
+import { getCategoryHref } from "@/lib/category";
 import {
   createSearchIndex,
   type SearchDocument,
@@ -117,7 +117,7 @@ export function Search() {
                 <article className="flex flex-col gap-2">
                   <div className="text-sm text-muted-foreground">
                     <Link
-                      href={getCategoryPath(result.category)}
+                      href={getCategoryHref(result.category)}
                       className="transition-colors hover:text-foreground"
                     >
                       {result.category}

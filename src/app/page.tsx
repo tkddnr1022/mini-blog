@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
-import { PostCard } from "@/components/post-card";
+import { FilteredPostList } from "@/components/filtered-post-list";
 import { siteConfig } from "@/lib/config";
 import { absoluteUrl } from "@/lib/seo";
-import { getAllPosts } from "@/lib/posts";
+import { getAllPosts, getCategoriesWithCounts } from "@/lib/posts";
 
 export function generateMetadata(): Metadata {
   const { name, description } = siteConfig();
@@ -22,7 +22,10 @@ export function generateMetadata(): Metadata {
 
 export default async function Home() {
   const { name, description } = siteConfig();
-  const posts = await getAllPosts();
+  const [posts, categories] = await Promise.all([
+    getAllPosts(),
+    getCategoriesWithCounts(),
+  ]);
 
   return (
     <div className="mx-auto flex w-full max-w-3xl flex-1 flex-col gap-8 px-6 py-16">
@@ -31,20 +34,7 @@ export default async function Home() {
         <p className="text-muted-foreground">{description}</p>
       </header>
 
-      <section aria-label="최신 포스트">
-        {posts.length === 0 ? (
-          <p className="text-muted-foreground">
-            아직 게시된 포스트가 없습니다. content/posts/에 마크다운을 추가해
-            주세요.
-          </p>
-        ) : (
-          <div className="flex flex-col">
-            {posts.map((post, index) => (
-              <PostCard key={post.slug} post={post} index={index} />
-            ))}
-          </div>
-        )}
-      </section>
+      <FilteredPostList posts={posts} categories={categories} />
     </div>
   );
 }

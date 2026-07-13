@@ -6,7 +6,7 @@ import { GiscusComments } from "@/components/giscus";
 import { PostContent } from "@/components/post-content";
 import { PostNavigation } from "@/components/post-navigation";
 import { Toc } from "@/components/toc";
-import { getCategoryPath } from "@/lib/category";
+import { getCategoryHref } from "@/lib/category";
 import {
   getAdjacentPosts,
   getPostBySlug,
@@ -68,7 +68,7 @@ export default async function PostPage({ params }: PostPageProps) {
               <time dateTime={post.date}>{post.date}</time>
               <span aria-hidden> · </span>
               <Link
-                href={getCategoryPath(post.category)}
+                href={getCategoryHref(post.category)}
                 className="transition-colors hover:text-foreground"
               >
                 {post.category}

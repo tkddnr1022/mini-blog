@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 
-import { getCategoryPath } from "@/lib/category";
+import { getCategoryHref } from "@/lib/category";
 import type { Post } from "@/lib/types";
 
 type PostCardProps = {
@@ -35,7 +35,7 @@ export function PostCard({ post, index = 0 }: PostCardProps) {
           <time dateTime={post.date}>{post.date}</time>
           <span aria-hidden>·</span>
           <Link
-            href={getCategoryPath(post.category)}
+            href={getCategoryHref(post.category)}
             className="transition-colors hover:text-foreground"
           >
             {post.category}

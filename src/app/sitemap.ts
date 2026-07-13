@@ -1,14 +1,12 @@
 import type { MetadataRoute } from "next";
 
-import { getCategoryPath } from "@/lib/category";
-import { getAllCategories, getAllPosts } from "@/lib/posts";
+import { getAllPosts } from "@/lib/posts";
 import { absoluteUrl } from "@/lib/seo";
 
 export const dynamic = "force-static";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = await getAllPosts();
-  const categories = await getAllCategories();
   const now = new Date();
 
   const staticRoutes: MetadataRoute.Sitemap = [
@@ -17,12 +15,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: now,
       changeFrequency: "weekly",
       priority: 1,
-    },
-    {
-      url: absoluteUrl("/list"),
-      lastModified: now,
-      changeFrequency: "weekly",
-      priority: 0.9,
     },
     {
       url: absoluteUrl("/about"),
@@ -45,12 +37,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
 
-  const categoryRoutes: MetadataRoute.Sitemap = categories.map((category) => ({
-    url: absoluteUrl(getCategoryPath(category)),
-    lastModified: now,
-    changeFrequency: "weekly",
-    priority: 0.7,
-  }));
-
-  return [...staticRoutes, ...postRoutes, ...categoryRoutes];
+  return [...staticRoutes, ...postRoutes];
 }

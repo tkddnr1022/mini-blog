@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { getCategoryPath } from "@/lib/category";
+import { getCategoryHref } from "@/lib/category";
 import type { CategoryWithCount } from "@/lib/posts";
 import { cn } from "@/lib/utils";
 
@@ -20,7 +20,7 @@ export function CategoryFilter({
       <ul className="flex flex-wrap gap-2">
         <li>
           <Link
-            href="/list"
+            href="/"
             className={cn(
               "inline-flex min-h-9 items-center gap-1.5 border px-3 text-sm transition-colors",
               !activeCategory
@@ -39,7 +39,7 @@ export function CategoryFilter({
           return (
             <li key={category.name}>
               <Link
-                href={getCategoryPath(category.name)}
+                href={getCategoryHref(category.name)}
                 className={cn(
                   "inline-flex min-h-9 items-center gap-1.5 border px-3 text-sm transition-colors",
                   isActive
