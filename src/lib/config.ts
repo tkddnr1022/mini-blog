@@ -17,6 +17,16 @@ export type SiteConfig = {
   gaId: string | null;
 };
 
+const site = {
+  name: "sanguk",
+  description: "생각 창고",
+  url: "https://blog.sanguk.site",
+  author: "tkddnr1022",
+  github: "https://github.com/tkddnr1022",
+  email: "tkddnr10222@gmail.com",
+  ogImage: "/og/default.png",
+} as const;
+
 function readEnv(name: string): string | undefined {
   const value = process.env[name]?.trim();
   return value && value.length > 0 ? value : undefined;
@@ -33,17 +43,13 @@ export function siteConfig(): SiteConfig {
   );
 
   return {
-    name: "Mini Blog",
-    description: "Personal technical blog",
-    url: (readEnv("NEXT_PUBLIC_SITE_URL") ?? "https://example.com").replace(
-      /\/$/,
-      "",
-    ),
-    author: readEnv("NEXT_PUBLIC_AUTHOR") ?? "Author",
-    github:
-      readEnv("NEXT_PUBLIC_GITHUB_URL") ?? "https://github.com/your-username",
-    email: readEnv("NEXT_PUBLIC_EMAIL") ?? "hello@example.com",
-    ogImage: "/og/default.png",
+    name: site.name,
+    description: site.description,
+    url: site.url.replace(/\/$/, ""),
+    author: site.author,
+    github: site.github,
+    email: site.email,
+    ogImage: site.ogImage,
     giscus: hasGiscus
       ? {
           repo: giscusRepo!,

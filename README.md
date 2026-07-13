@@ -64,9 +64,13 @@ content/posts/{slug}/
 - `master` 브랜치 push 시 `.github/workflows/deploy.yml`이 빌드 후 배포합니다.
 - 커스텀 도메인 설정은 M7에서 확정합니다.
 
+## 사이트 설정
+
+사이트 이름, 설명, URL, 작성자, GitHub·이메일 링크 등은 `src/lib/config.ts`의 `site` 객체에서 직접 수정합니다.
+
 ## 환경 변수
 
-`.env.example`을 복사해 `.env.local`을 만든 뒤 값을 채웁니다.
+giscus·GA4만 환경 변수로 설정합니다. `.env.example`을 복사해 `.env.local`을 만든 뒤 값을 채웁니다.
 
 ```bash
 cp .env.example .env.local
@@ -74,10 +78,6 @@ cp .env.example .env.local
 
 | 변수 | 용도 |
 |------|------|
-| `NEXT_PUBLIC_SITE_URL` | SEO canonical·OG·sitemap 절대 URL (배포 도메인) |
-| `NEXT_PUBLIC_AUTHOR` | About·JSON-LD 작성자 이름 |
-| `NEXT_PUBLIC_GITHUB_URL` | Navbar·About GitHub 링크 |
-| `NEXT_PUBLIC_EMAIL` | Navbar·About 이메일 (`mailto:`) |
 | `NEXT_PUBLIC_GISCUS_*` | 포스트 댓글 (giscus) |
 | `NEXT_PUBLIC_GA_ID` | Google Analytics 4 측정 ID |
 
