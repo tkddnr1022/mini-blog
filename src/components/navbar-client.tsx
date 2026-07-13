@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { ExternalLink, Mail, Menu, Search, X } from "lucide-react";
+import { Mail, Menu, Search, X } from "lucide-react";
 
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
@@ -165,7 +165,14 @@ export function NavbarClient({
               aria-label="GitHub"
               title="GitHub"
             >
-              <ExternalLink className="size-4" aria-hidden />
+              <img
+                src="/github.svg"
+                alt=""
+                width={16}
+                height={16}
+                className="size-4 dark:invert"
+                aria-hidden
+              />
             </a>
           </Button>
           <Button variant="ghost" size="icon" className="min-h-11 min-w-11" asChild>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ExternalLink, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
 
 import { siteConfig } from "@/lib/config";
 import { absoluteUrl } from "@/lib/seo";
@@ -68,7 +68,14 @@ export default function AboutPage() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-sm transition-colors hover:text-foreground text-muted-foreground"
             >
-              <ExternalLink className="size-4" aria-hidden />
+              <img
+                src="/github.svg"
+                alt=""
+                width={16}
+                height={16}
+                className="size-4 dark:invert"
+                aria-hidden
+              />
               GitHub
             </a>
           </li>
