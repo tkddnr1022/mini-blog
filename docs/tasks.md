@@ -31,32 +31,32 @@
 예상: 2~3일 | 의존: 없음
 
 ### T-M1-01. Next.js 프로젝트 초기화
-- [ ] `create-next-app`으로 App Router + TypeScript + Tailwind + `/src` 경로 사용하는 프로젝트 생성
-- [ ] `output: 'export'` 및 `images.unoptimized: true` 설정 (`next.config`)
-- [ ] 커스텀 도메인(OQ-1) 기준으로 `basePath`/`assetPrefix` 미설정(루트 배포)
+- [x] `create-next-app`으로 App Router + TypeScript + Tailwind + `/src` 경로 사용하는 프로젝트 생성
+- [x] `output: 'export'` 및 `images.unoptimized: true` 설정 (`next.config`)
+- [x] 커스텀 도메인(OQ-1) 기준으로 `basePath`/`assetPrefix` 미설정(루트 배포)
 - **관련:** FR-01
 - **완료 기준:** `next build`가 `out/` 정적 산출물을 생성한다
 
 ### T-M1-02. 폴더 구조 및 경로 alias 정리
-- [ ] PRD §8 기준으로 `content/posts/`, `src/app/`, `src/components/`, `src/lib/`, `scripts/` 디렉터리 생성
-- [ ] `@/` path alias 동작 확인
+- [x] PRD §8 기준으로 `content/posts/`, `src/app/`, `src/components/`, `src/lib/`, `scripts/` 디렉터리 생성
+- [x] `@/` path alias 동작 확인
 - **관련:** 유지보수성(NFR)
 - **완료 기준:** 빈 스켈레톤 라우트(`page.tsx`)가 빌드에 포함된다
 
 ### T-M1-03. shadcn/ui + Tailwind 기반 스타일 토큰
-- [ ] shadcn/ui 초기화 및 기본 컴포넌트(Button, Input 등) 설치
-- [ ] 흑백(그레이스케일) CSS 변수 / 테마 토큰 정의 (DR-04)
+- [x] shadcn/ui 초기화 및 기본 컴포넌트(Button, Input 등) 설치
+- [x] 흑백(그레이스케일) CSS 변수 / 테마 토큰 정의 (DR-04)
 - **관련:** DR-01, DR-04
 - **완료 기준:** 샘플 페이지에서 shadcn Button이 그레이스케일 테마로 렌더된다
 
 ### T-M1-04. GitHub Actions 배포 스켈레톤
-- [ ] `.github/workflows/deploy.yml` 작성 (checkout → install → build → Pages upload)
-- [ ] GitHub Pages 소스: GitHub Actions 로 설정 가이드를 README에 1줄 메모
+- [x] `.github/workflows/deploy.yml` 작성 (checkout → install → build → Pages upload)
+- [x] GitHub Pages 소스: GitHub Actions 로 설정 가이드를 README에 1줄 메모
 - **관련:** FR-01, OR-03
 - **완료 기준:** workflow 파일이 존재하고, 수동/푸시 트리거로 dry-run 빌드 단계까지 통과한다 (Pages 실제 배포는 M7에서 확정)
 
 ### T-M1-05. 환경·문서 기초
-- [ ] `.gitignore`, `README.md`(로컬 실행/발행 방법 초안), 샘플 `.env.example`(필요 시 giscus 등)
+- [x] `.gitignore`, `README.md`(로컬 실행/발행 방법 초안), 샘플 `.env.example`(필요 시 giscus 등)
 - **관련:** OR-01, OR-02
 - **완료 기준:** `pnpm/npm/yarn install && npm run build` 로컬 절차가 README에 적혀 있다
 
