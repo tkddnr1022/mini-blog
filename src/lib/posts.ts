@@ -91,7 +91,7 @@ export async function getPostBySlug(slug: string): Promise<Post> {
     ? rewriteImagePath(slug, frontmatter.thumbnail)
     : undefined;
 
-  const html = await markdownToHtml(content, {
+  const { html, headings } = await markdownToHtml(content, {
     slug,
     validSlugs,
   });
@@ -107,6 +107,7 @@ export async function getPostBySlug(slug: string): Promise<Post> {
     readingTime: stats.text,
     content,
     html,
+    headings,
   };
 }
 
@@ -140,4 +141,28 @@ export function groupPostsByCategory(
     groups[post.category].push(post);
     return groups;
   }, {});
+}
+
+export type AdjacentPosts = {
+  previous: Pick<Post, "slug" | "title"> | null;
+  next: Pick<Post, "slug" | "title"> | null;
+};
+
+export async function getAdjacentPosts(slug: string): Promise<AdjacentPosts> {
+  const posts = await getAllPosts();
+  const index = posts.findIndex((post) => post.slug === slug);
+
+  if (index === -1) {
+    return { previous: null, next: null };
+  }
+
+  const previous = index < posts.length - 1 ? posts[index + 1] : null;
+  const next = index > 0 ? posts[index - 1] : null;
+
+  return {
+    previous: previous
+      ? { slug: previous.slug, title: previous.title }
+      : null,
+    next: next ? { slug: next.slug, title: next.title } : null,
+  };
 }
