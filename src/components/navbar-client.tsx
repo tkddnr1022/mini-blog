@@ -106,7 +106,7 @@ export function NavbarClient({
     >
       <div
         className={cn(
-          "mx-auto flex w-full max-w-5xl items-center justify-between gap-4 px-6",
+          "mx-auto flex w-full max-w-4xl items-center justify-between gap-4 px-6",
           transitionClass,
           scrolled ? "h-12" : "h-14",
         )}
@@ -192,7 +192,7 @@ export function NavbarClient({
           aria-label="모바일 메뉴"
           className="border-t border-border bg-background sm:hidden"
         >
-          <nav aria-label="모바일 주 메뉴" className="mx-auto max-w-5xl px-6 py-4">
+          <nav aria-label="모바일 주 메뉴" className="mx-auto max-w-4xl px-6 py-4">
             <ul className="flex flex-col">
               {links.map((link) => (
                 <li key={link.href}>

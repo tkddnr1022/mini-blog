@@ -25,7 +25,7 @@ export default function AboutPage() {
   const { github, email } = siteConfig();
 
   return (
-    <div className="mx-auto flex w-full max-w-3xl flex-1 flex-col gap-10 px-6 py-16">
+    <div className="mx-auto flex w-full max-w-4xl flex-1 flex-col gap-10 px-6 py-16">
       <header className="flex flex-col gap-2">
         <h1 className="text-3xl font-semibold tracking-tight">About</h1>
         <p className="text-muted-foreground">저자에 대하여</p>

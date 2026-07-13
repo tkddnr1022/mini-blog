@@ -50,7 +50,7 @@ export default async function PostPage({ params }: PostPageProps) {
   const jsonLd = createBlogPostingJsonLd(post);
 
   return (
-    <div className="mx-auto w-full max-w-5xl flex-1 px-6 py-16">
+    <div className="mx-auto w-full max-w-4xl flex-1 px-6 py-16">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -58,8 +58,8 @@ export default async function PostPage({ params }: PostPageProps) {
       <div
         className={
           hasHeadings
-            ? "lg:grid lg:grid-cols-[minmax(0,1fr)_12rem] lg:gap-12 xl:grid-cols-[minmax(0,1fr)_14rem]"
-            : "mx-auto max-w-3xl"
+            ? "lg:grid lg:grid-cols-[minmax(0,1fr)_12rem] lg:gap-12 xl:grid-cols-[minmax(0,1fr)_7rem]"
+            : "mx-auto max-w-4xl"
         }
       >
         <div className="min-w-0">
