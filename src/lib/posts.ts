@@ -130,6 +130,24 @@ export async function getAllCategories(): Promise<string[]> {
   return [...categories].sort((left, right) => left.localeCompare(right));
 }
 
+export type CategoryWithCount = {
+  name: string;
+  count: number;
+};
+
+export async function getCategoriesWithCounts(): Promise<CategoryWithCount[]> {
+  const posts = await getAllPosts();
+  const counts = new Map<string, number>();
+
+  for (const post of posts) {
+    counts.set(post.category, (counts.get(post.category) ?? 0) + 1);
+  }
+
+  return [...counts.entries()]
+    .map(([name, count]) => ({ name, count }))
+    .sort((left, right) => left.name.localeCompare(right.name));
+}
+
 export function groupPostsByCategory(
   posts: Post[],
 ): Record<string, Post[]> {

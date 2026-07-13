@@ -1,5 +1,5 @@
 export function getCategoryPath(category: string): string {
-  return `/category/${encodeURIComponent(category)}`;
+  return `/list/${encodeURIComponent(category)}`;
 }
 
 export function decodeCategoryParam(category: string): string {

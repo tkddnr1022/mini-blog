@@ -1,11 +1,18 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 
+import { CategoryFilter } from "@/components/category-filter";
 import { PostCard } from "@/components/post-card";
 import { decodeCategoryParam, getCategoryPath } from "@/lib/category";
+import {
+  getAllCategories,
+  getAllPosts,
+  getCategoriesWithCounts,
+  getPostsByCategory,
+} from "@/lib/posts";
 import { absoluteUrl } from "@/lib/seo";
-import { getAllCategories, getPostsByCategory } from "@/lib/posts";
 
-type CategoryPageProps = {
+type ListCategoryPageProps = {
   params: Promise<{ category: string }>;
 };
 
@@ -19,9 +26,17 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({
   params,
-}: CategoryPageProps): Promise<Metadata> {
+}: ListCategoryPageProps): Promise<Metadata> {
   const { category: categoryParam } = await params;
   const category = decodeCategoryParam(categoryParam);
+  const categories = await getAllCategories();
+
+  if (!categories.includes(category)) {
+    return {
+      title: "목록",
+    };
+  }
+
   const canonical = getCategoryPath(category);
 
   return {
@@ -38,20 +53,37 @@ export async function generateMetadata({
   };
 }
 
-export default async function CategoryPage({ params }: CategoryPageProps) {
+export default async function ListCategoryPage({
+  params,
+}: ListCategoryPageProps) {
   const { category: categoryParam } = await params;
   const category = decodeCategoryParam(categoryParam);
-  const posts = await getPostsByCategory(category);
+  const [allCategories, allPosts, categoriesWithCounts, posts] =
+    await Promise.all([
+      getAllCategories(),
+      getAllPosts(),
+      getCategoriesWithCounts(),
+      getPostsByCategory(category),
+    ]);
+
+  if (!allCategories.includes(category)) {
+    notFound();
+  }
 
   return (
     <div className="mx-auto flex w-full max-w-3xl flex-1 flex-col gap-8 px-6 py-16">
       <header className="flex flex-col gap-2">
-        <p className="text-sm text-muted-foreground">카테고리</p>
-        <h1 className="text-3xl font-semibold tracking-tight">{category}</h1>
+        <h1 className="text-3xl font-semibold tracking-tight">목록</h1>
         <p className="text-muted-foreground">
-          {posts.length}개의 포스트
+          {category} · {posts.length}개의 포스트
         </p>
       </header>
+
+      <CategoryFilter
+        categories={categoriesWithCounts}
+        totalCount={allPosts.length}
+        activeCategory={category}
+      />
 
       <section aria-label={`${category} 포스트 목록`}>
         {posts.length === 0 ? (
