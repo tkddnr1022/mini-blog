@@ -22,21 +22,21 @@ export function generateMetadata(): Metadata {
 }
 
 export default function AboutPage() {
-  const { name, description, author, github, email } = siteConfig();
+  const { github, email } = siteConfig();
 
   return (
     <div className="mx-auto flex w-full max-w-3xl flex-1 flex-col gap-10 px-6 py-16">
       <header className="flex flex-col gap-2">
         <h1 className="text-3xl font-semibold tracking-tight">About</h1>
-        <p className="text-muted-foreground">{description}</p>
+        <p className="text-muted-foreground">저자에 대하여</p>
       </header>
 
       <section className="flex flex-col gap-3">
         <h2 className="text-lg font-medium tracking-tight">소개</h2>
         <p className="leading-relaxed text-muted-foreground">
-          {author}입니다. {name}에서 기술 학습 기록, 프로젝트 회고, 실험
-          결과를 정리합니다. Obsidian으로 작성한 마크다운을 그대로 발행하는
-          정적 블로그를 운영합니다.
+        주니어 풀스택 엔지니어로서 React + Node.js 개발을 하고 있습니다.<br />
+        디자인, DevOps 등 다양한 분야에 관심이 있습니다.<br />
+        프로젝트를 진행하며 배운 것을 정리하고 있습니다.<br />
         </p>
       </section>
 
@@ -50,9 +50,15 @@ export default function AboutPage() {
             </p>
           </li>
           <li className="flex flex-col gap-1">
+            <span className="text-sm text-muted-foreground">2025</span>
+            <p className="leading-relaxed">
+              풀스택 엔지니어 근무(올콘텐츠앤에이아이)
+            </p>
+          </li>
+          <li className="flex flex-col gap-1">
             <span className="text-sm text-muted-foreground">관심 분야</span>
             <p className="leading-relaxed">
-              프론트엔드, 정적 사이트, 개발자 경험(DX), 콘텐츠 워크플로우
+              객체 지향, 프로덕트 개발, 서비스 운영, UI/UX 디자인
             </p>
           </li>
         </ul>
