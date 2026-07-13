@@ -203,6 +203,30 @@ button {
   color: var(--muted-foreground);
 }
 
+.post-content a:not(.broken-wikilink) {
+  color: var(--foreground);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in oklch, var(--foreground) 30%, transparent);
+  text-underline-offset: 0.25em;
+  text-decoration-thickness: 1px;
+  transition: text-decoration-color 0.15s ease;
+}
+
+.post-content a:not(.broken-wikilink):hover {
+  text-decoration-color: var(--foreground);
+}
+
+.post-content a:not(.broken-wikilink):focus-visible {
+  outline: none;
+  border-radius: calc(var(--radius) * 0.2);
+  box-shadow: 0 0 0 3px color-mix(in oklch, var(--ring) 50%, transparent);
+}
+
+.post-content pre a {
+  color: inherit;
+  text-decoration: none;
+}
+
 .post-content :not(pre) > code {
   padding: 0.15rem 0.35rem;
   border-radius: calc(var(--radius) * 0.4);
