@@ -5,7 +5,7 @@ export async function Navbar() {
   const { name, github, email } = siteConfig();
 
   const links = [
-    { href: "/search", label: "검색" },
+    { href: "/search", label: "Search" },
     { href: "/about", label: "About" },
   ];
 
