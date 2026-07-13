@@ -1,7 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Lightbox from "yet-another-react-lightbox";
+
+import { CodeBlock, parsePostHtml } from "@/components/code-block";
 
 import "yet-another-react-lightbox/styles.css";
 
@@ -19,6 +21,7 @@ export function PostContent({ html }: PostContentProps) {
   const [open, setOpen] = useState(false);
   const [index, setIndex] = useState(0);
   const [slides, setSlides] = useState<Slide[]>([]);
+  const parts = useMemo(() => parsePostHtml(html), [html]);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -88,11 +91,24 @@ export function PostContent({ html }: PostContentProps) {
 
   return (
     <>
-      <article
-        ref={containerRef}
-        className="post-content max-w-none"
-        dangerouslySetInnerHTML={{ __html: html }}
-      />
+      <article ref={containerRef} className="post-content max-w-none">
+        {parts.map((part, partIndex) =>
+          part.type === "code" ? (
+            <CodeBlock
+              key={`code-${partIndex}`}
+              language={part.language}
+              title={part.title}
+              code={part.code}
+              html={part.html}
+            />
+          ) : (
+            <div
+              key={`html-${partIndex}`}
+              dangerouslySetInnerHTML={{ __html: part.html }}
+            />
+          ),
+        )}
+      </article>
       <Lightbox
         open={open}
         close={() => setOpen(false)}

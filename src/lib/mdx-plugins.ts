@@ -1,3 +1,4 @@
+import rehypePrettyCode from "rehype-pretty-code";
 import rehypeRaw from "rehype-raw";
 import rehypeSlug from "rehype-slug";
 import rehypeStringify from "rehype-stringify";
@@ -18,6 +19,18 @@ export type MarkdownToHtmlResult = {
   headings: PostHeading[];
 };
 
+const prettyCodeOptions = {
+  theme: {
+    light: "github-light",
+    dark: "github-dark",
+  },
+  keepBackground: false,
+  bypassInlineCode: true,
+  defaultLang: {
+    block: "plaintext",
+  },
+} as const;
+
 export async function markdownToHtml(
   markdown: string,
   options: MarkdownToHtmlOptions,
@@ -35,6 +48,7 @@ export async function markdownToHtml(
     .use(remarkRehype, { allowDangerousHtml: true })
     .use(rehypeRaw)
     .use(rehypeSlug)
+    .use(rehypePrettyCode, prettyCodeOptions)
     .use(rehypeStringify)
     .process(markdown);
 
