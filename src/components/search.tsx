@@ -79,6 +79,7 @@ export function Search() {
         onChange={(event) => setQuery(event.target.value)}
         placeholder="제목, 요약, 본문으로 검색"
         aria-label="포스트 검색"
+        className="min-h-11"
       />
 
       <div aria-live="polite" className="min-h-8">

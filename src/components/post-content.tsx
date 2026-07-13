@@ -36,13 +36,16 @@ export function PostContent({ html }: PostContentProps) {
       })),
     );
 
-    const handleClick = (event: MouseEvent) => {
-      const target = event.target;
+    for (const [imageIndex, image] of images.entries()) {
+      image.tabIndex = 0;
+      image.role = "button";
+      image.setAttribute(
+        "aria-label",
+        image.alt ? `${image.alt} 확대 보기` : `이미지 ${imageIndex + 1} 확대 보기`,
+      );
+    }
 
-      if (!(target instanceof HTMLImageElement)) {
-        return;
-      }
-
+    const openImage = (target: HTMLImageElement) => {
       const imageIndex = images.indexOf(target);
 
       if (imageIndex >= 0) {
@@ -51,10 +54,35 @@ export function PostContent({ html }: PostContentProps) {
       }
     };
 
+    const handleClick = (event: MouseEvent) => {
+      const target = event.target;
+
+      if (!(target instanceof HTMLImageElement)) {
+        return;
+      }
+
+      openImage(target);
+    };
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      const target = event.target;
+
+      if (!(target instanceof HTMLImageElement)) {
+        return;
+      }
+
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openImage(target);
+      }
+    };
+
     container.addEventListener("click", handleClick);
+    container.addEventListener("keydown", handleKeyDown);
 
     return () => {
       container.removeEventListener("click", handleClick);
+      container.removeEventListener("keydown", handleKeyDown);
     };
   }, [html]);
 

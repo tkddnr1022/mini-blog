@@ -7,7 +7,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
+  --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-sans);
   --color-sidebar-ring: var(--sidebar-ring);
@@ -60,7 +60,7 @@
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
+  --muted-foreground: oklch(0.45 0 0);
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.45 0 0);
@@ -129,8 +129,57 @@
   }
 }
 
+button {
+  cursor: pointer;
+}
+
+.post-content {
+  max-width: 65ch;
+  line-height: 1.75;
+  font-size: 1rem;
+}
+
 .post-content :is(h2, h3, h4) {
   scroll-margin-top: 5rem;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+  font-weight: 600;
+}
+
+.post-content p {
+  margin: 1.25rem 0;
+}
+
+.post-content :is(ul, ol) {
+  margin: 1.25rem 0;
+  padding-left: 1.5rem;
+}
+
+.post-content li {
+  margin: 0.35rem 0;
+}
+
+.post-content blockquote {
+  margin: 1.25rem 0;
+  padding-left: 1rem;
+  border-left: 3px solid var(--border);
+  color: var(--muted-foreground);
+}
+
+.post-content pre {
+  margin: 1.25rem 0;
+  overflow-x: auto;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  background: var(--muted);
+}
+
+.post-content :not(pre) > code {
+  padding: 0.15rem 0.35rem;
+  border-radius: calc(var(--radius) * 0.4);
+  background: var(--muted);
+  font-size: 0.9em;
 }
 
 .post-content table {
@@ -148,6 +197,12 @@
   max-width: 100%;
   height: auto;
   cursor: zoom-in;
+  border-radius: calc(var(--radius) * 0.4);
+}
+
+.post-content img:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in oklch, var(--ring) 50%, transparent);
 }
 
 .broken-wikilink {

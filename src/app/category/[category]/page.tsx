@@ -60,8 +60,8 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           </p>
         ) : (
           <div className="flex flex-col">
-            {posts.map((post) => (
-              <PostCard key={post.slug} post={post} />
+            {posts.map((post, index) => (
+              <PostCard key={post.slug} post={post} index={index} />
             ))}
           </div>
         )}

@@ -43,6 +43,21 @@ content/posts/{slug}/
 
 빌드 전 `prebuild` 단계에서 `content/posts/**/images`가 `public/posts/{slug}/images`로 복사되어 정적 export에서도 이미지가 서빙됩니다.
 
+### 이미지 가이드
+
+콘텐츠 이미지는 리포지토리에 포함하며, 아래 권장 사항을 따르면 로딩·가독성·Lighthouse 점수에 유리합니다.
+
+| 항목 | 권장 |
+|------|------|
+| 저장 경로 | `content/posts/{slug}/images/` (frontmatter `thumbnail`은 `./images/...` 상대 경로) |
+| 본문 이미지 너비 | 최대 1600px (블로그 본문 최대 폭 65ch 기준으로 충분) |
+| 썸네일 비율 | 16:9 권장 (`aspect-[16/9]`로 표시) |
+| 포맷 | WebP 또는 JPEG (PNG는 스크린샷·투명 배경에만) |
+| 파일 크기 | 본문 이미지 500KB 이하, 썸네일 200KB 이하 목표 |
+| alt 텍스트 | 마크다운 `![설명](...)`에 의미 있는 설명 작성 (장식용은 빈 alt 허용) |
+
+대용량 원본은 업로드 전 리사이즈·압축한 뒤 커밋하세요.
+
 ## GitHub Pages 배포
 
 - Repository **Settings → Pages → Build and deployment → Source: GitHub Actions**
