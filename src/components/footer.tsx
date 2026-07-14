@@ -6,7 +6,7 @@ export function Footer() {
 
   return (
     <footer className="border-t border-border">
-      <div className="mx-auto flex w-full max-w-4xl items-center justify-between px-6 py-8 text-sm text-muted-foreground">
+      <div className="mx-auto flex w-full max-w-4.5xl items-center justify-between px-6 py-8 text-sm text-muted-foreground">
         <p>
           © {year} {author}
         </p>
