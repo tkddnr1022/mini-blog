@@ -341,30 +341,30 @@
 
 ### T-M7-01. CI 파이프라인 완성
 
-- [ ] Actions: 의존성 설치 → 검색 인덱스 생성 → (mermaid 포함) 빌드 → Pages 배포
-- [ ] Node/캐시 설정으로 빌드 시간 완화
+- [x] Actions: 의존성 설치 → 검색 인덱스 생성 → (mermaid 포함) 빌드 → Pages 배포
+- [x] Node/캐시 설정으로 빌드 시간 완화
 - **관련:** FR-01, OR-03
 - **완료 기준:** `main`(또는 배포 브랜치) push 후 5분 이내 배포 완료
 
 ### T-M7-02. 커스텀 도메인 확정
 
-- [ ] OQ-1 반영: `basePath` 미사용, 내부 링크·자산·sitemap/OG를 커스텀 도메인 절대 URL 기준으로 정리
-- [ ] DNS/`CNAME` 절차 및 GitHub Pages 커스텀 도메인 설정 문서화
+- [x] OQ-1 반영: `basePath` 미사용, 내부 링크·자산·sitemap/OG를 커스텀 도메인 절대 URL 기준으로 정리
+- [x] DNS/`CNAME` 절차 및 GitHub Pages 커스텀 도메인 설정 문서화
 - **관련:** FR-01, FR-13, 리스크 커스텀 도메인
 - **완료 기준:** 커스텀 도메인에서 CSS/JS/이미지/내부 링크가 모두 정상이다
 
 ### T-M7-03. 발행 워크플로우 E2E 검증
 
-- [ ] Obsidian → `content/posts/` 복사 → push → 배포 → URL 확인 시나리오 수행
-- [ ] README에 운영자 체크리스트(frontmatter 필수 필드, 이미지 경로) 정리
+- [x] Obsidian → `content/posts/` 복사 → push → 배포 → URL 확인 시나리오 수행
+- [x] README에 운영자 체크리스트(frontmatter 필수 필드, 이미지 경로) 정리
 - **관련:** OR-01, OR-02, OR-03, 성공 지표(10분 이내 발행)
 - **완료 기준:** 신규 샘플 포스트가 업로드~배포까지 10분 이내에 공개된다
 
 ### T-M7-04. 최종 품질 게이트
 
-- [ ] Lighthouse: Performance ≥ 90, SEO ≥ 95
-- [ ] FR-01~FR-14 / DR-01~DR-06 수동 스모크 체크
-- [ ] giscus 실작성 1회, 검색·TOC·라이트박스·다크모드·GA4 스모크
+- [x] Lighthouse: Performance ≥ 90, SEO ≥ 95
+- [x] FR-01~FR-14 / DR-01~DR-06 수동 스모크 체크
+- [x] giscus 실작성 1회, 검색·TOC·라이트박스·다크모드·GA4 스모크
 - **관련:** 성공 지표, PRD §13
 - **완료 기준:** 아래 추적 매트릭스의 DoD가 모두 충족된다
 
