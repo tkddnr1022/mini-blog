@@ -255,10 +255,10 @@ button {
 }
 
 .post-content :not(pre) > code {
-  padding: 0.15rem 0.35rem;
+  padding: 0.14rem 0.35rem;
   border-radius: calc(var(--radius) * 0.4);
   background: var(--muted);
-  font-size: 0.9em;
+  font-size: 0.85em;
   font-family: var(--font-mono);
 }
 
@@ -270,7 +270,7 @@ button {
   border-radius: var(--radius-xl);
   background: var(--code);
   color: var(--code-foreground);
-  font-size: 0.875rem;
+  font-size: 0.835rem;
 }
 
 .post-content [data-slot="code-block-body"] pre,
