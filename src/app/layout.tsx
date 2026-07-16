@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Asta_Sans, Geist_Mono } from "next/font/google";
 
 import { Analytics } from "@/components/analytics";
 import { Footer } from "@/components/footer";
@@ -10,9 +10,11 @@ import { createDefaultMetadata } from "@/lib/seo";
 
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const astaSans = Asta_Sans({
+  variable: "--font-asta-sans",
   subsets: ["latin"],
+  weight: "variable",
+  adjustFontFallback: false,
 });
 
 const geistMono = Geist_Mono({
@@ -31,7 +33,7 @@ export default function RootLayout({
     <html
       lang="ko"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${astaSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
         <Providers>
