@@ -27,16 +27,17 @@ const site = {
   ogImage: "/og/default.png",
 } as const;
 
-function readEnv(name: string): string | undefined {
-  const value = process.env[name]?.trim();
-  return value && value.length > 0 ? value : undefined;
+function readEnv(value: string | undefined): string | undefined {
+  const trimmed = value?.trim();
+  return trimmed && trimmed.length > 0 ? trimmed : undefined;
 }
 
 export function siteConfig(): SiteConfig {
-  const giscusRepo = readEnv("NEXT_PUBLIC_GISCUS_REPO");
-  const giscusRepoId = readEnv("NEXT_PUBLIC_GISCUS_REPO_ID");
-  const giscusCategory = readEnv("NEXT_PUBLIC_GISCUS_CATEGORY");
-  const giscusCategoryId = readEnv("NEXT_PUBLIC_GISCUS_CATEGORY_ID");
+  // Static keys required — Next.js only inlines NEXT_PUBLIC_* for client bundles.
+  const giscusRepo = readEnv(process.env.NEXT_PUBLIC_GISCUS_REPO);
+  const giscusRepoId = readEnv(process.env.NEXT_PUBLIC_GISCUS_REPO_ID);
+  const giscusCategory = readEnv(process.env.NEXT_PUBLIC_GISCUS_CATEGORY);
+  const giscusCategoryId = readEnv(process.env.NEXT_PUBLIC_GISCUS_CATEGORY_ID);
 
   const hasGiscus = Boolean(
     giscusRepo && giscusRepoId && giscusCategory && giscusCategoryId,
@@ -58,6 +59,6 @@ export function siteConfig(): SiteConfig {
           categoryId: giscusCategoryId!,
         }
       : null,
-    gaId: readEnv("NEXT_PUBLIC_GA_ID") ?? null,
+    gaId: readEnv(process.env.NEXT_PUBLIC_GA_ID) ?? null,
   };
 }
