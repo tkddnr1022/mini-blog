@@ -34,9 +34,12 @@ export default function AboutPage() {
       <section className="flex flex-col gap-3">
         <h2 className="text-lg font-medium tracking-tight">소개</h2>
         <p className="leading-relaxed text-muted-foreground">
-        주니어 풀스택 엔지니어로서 React + Node.js 개발을 하고 있습니다.<br />
-        디자인, DevOps 등 다양한 분야에 관심이 있습니다.<br />
-        프로젝트를 진행하며 배운 것을 정리하고 있습니다.<br />
+          주니어 풀스택 엔지니어로서 React + Node.js 개발을 하고 있습니다.
+          <br />
+          디자인, DevOps 등 다양한 분야에 관심이 있습니다.
+          <br />
+          프로젝트를 진행하며 배운 것을 정리하고 있습니다.
+          <br />
         </p>
       </section>
 
@@ -55,13 +58,14 @@ export default function AboutPage() {
               풀스택 엔지니어 근무(올콘텐츠앤에이아이)
             </p>
           </li>
-          <li className="flex flex-col gap-1">
-            <span className="text-sm text-muted-foreground">관심 분야</span>
-            <p className="leading-relaxed">
-              객체 지향, 프로덕트 개발, 서비스 운영, UI/UX 디자인
-            </p>
-          </li>
         </ul>
+      </section>
+
+      <section className="flex flex-col gap-3">
+        <h2 className="text-lg font-medium tracking-tight">관심 분야</h2>
+        <p className="leading-relaxed">
+          객체 지향, 프로덕트 개발, 서비스 운영, UI/UX 디자인
+        </p>
       </section>
 
       <section className="flex flex-col gap-3">
