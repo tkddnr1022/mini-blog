@@ -1,6 +1,12 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import {
+  useCallback,
+  useMemo,
+  useState,
+  type KeyboardEvent,
+  type MouseEvent,
+} from "react";
 import Lightbox from "yet-another-react-lightbox";
 
 import { CodeBlock, parsePostHtml } from "@/components/code-block";
@@ -17,27 +23,14 @@ type Slide = {
 };
 
 export function PostContent({ html }: PostContentProps) {
-  const containerRef = useRef<HTMLElement>(null);
   const [open, setOpen] = useState(false);
   const [index, setIndex] = useState(0);
   const [slides, setSlides] = useState<Slide[]>([]);
   const parts = useMemo(() => parsePostHtml(html), [html]);
 
-  useEffect(() => {
-    const container = containerRef.current;
-
-    if (!container) {
-      return;
-    }
-
+  const decorateImages = useCallback((container: HTMLElement | null) => {
+    if (!container) return;
     const images = Array.from(container.querySelectorAll("img"));
-
-    setSlides(
-      images.map((image) => ({
-        src: image.src,
-        alt: image.alt || undefined,
-      })),
-    );
 
     for (const [imageIndex, image] of images.entries()) {
       image.tabIndex = 0;
@@ -47,27 +40,42 @@ export function PostContent({ html }: PostContentProps) {
         image.alt ? `${image.alt} 확대 보기` : `이미지 ${imageIndex + 1} 확대 보기`,
       );
     }
+  }, []);
 
-    const openImage = (target: HTMLImageElement) => {
+  const openImage = useCallback(
+    (container: HTMLElement, target: HTMLImageElement) => {
+      const images = Array.from(container.querySelectorAll("img"));
       const imageIndex = images.indexOf(target);
 
       if (imageIndex >= 0) {
+        setSlides(
+          images.map((image) => ({
+            src: image.src,
+            alt: image.alt || undefined,
+          })),
+        );
         setIndex(imageIndex);
         setOpen(true);
       }
-    };
+    },
+    [],
+  );
 
-    const handleClick = (event: MouseEvent) => {
+  const handleClick = useCallback(
+    (event: MouseEvent<HTMLElement>) => {
       const target = event.target;
 
       if (!(target instanceof HTMLImageElement)) {
         return;
       }
 
-      openImage(target);
-    };
+      openImage(event.currentTarget, target);
+    },
+    [openImage],
+  );
 
-    const handleKeyDown = (event: KeyboardEvent) => {
+  const handleKeyDown = useCallback(
+    (event: KeyboardEvent<HTMLElement>) => {
       const target = event.target;
 
       if (!(target instanceof HTMLImageElement)) {
@@ -76,22 +84,20 @@ export function PostContent({ html }: PostContentProps) {
 
       if (event.key === "Enter" || event.key === " ") {
         event.preventDefault();
-        openImage(target);
+        openImage(event.currentTarget, target);
       }
-    };
-
-    container.addEventListener("click", handleClick);
-    container.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      container.removeEventListener("click", handleClick);
-      container.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [html]);
+    },
+    [openImage],
+  );
 
   return (
     <>
-      <article ref={containerRef} className="post-content max-w-none">
+      <article
+        ref={decorateImages}
+        className="post-content max-w-none"
+        onClick={handleClick}
+        onKeyDown={handleKeyDown}
+      >
         {parts.map((part, partIndex) =>
           part.type === "code" ? (
             <CodeBlock
